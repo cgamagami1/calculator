@@ -2,15 +2,16 @@ body {
     margin: 0;
     padding: 0;
     background-image: linear-gradient(90deg, #250325 0%, #000000 40% 60%, #250325 100%);
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
     color: white;
-    font-family: "Montserrat", sans-serif;
     letter-spacing: .1em;
     font-size: 3em;
     text-align: center;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
+    font-weight: 100;
 }
 
 .container {
@@ -19,29 +20,40 @@ h1 {
 }
 
 .calculator-body {
-    width: 21em;
-    height: 35em;
-    padding: 1em;
+    height: 36em;
+    padding: 1em 1em 2em 1em;
     background-color: #0c0c0c;
     border: 2px #505050 solid;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 1.5em #0c0c0c;
 }
 
 .screen {
     height: 7em;
     background-color: black;
     border-radius: .5em;
+    display: grid;
+    justify-content: right;
+    align-content: center;
+    padding: 0em 1em;
+}
+
+.equation {
+    color: green;
+    text-shadow: 0 0 10px green;
+    box-sizing: content-box;
+    font-size: 3em;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: 5em 5em 5em 5em;
     grid-template-rows: 5em 5em 5em 5em 5em;
-    column-gap: .25em;
-    row-gap: .25em;
+    column-gap: .5em;
+    row-gap: .5em;
 }
 
 button {
@@ -50,6 +62,19 @@ button {
     color: white;
     border: 2px solid #505050;
     border-radius: 0.5em;
+    transition: background-color 200ms ease-in-out;
+    box-shadow: 0 0.4em #252525;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+    background-color: #505050;
+    transform: translateY(-8%);
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(-4%);
 }
 
 .addition-button {
@@ -61,8 +86,8 @@ footer {
     padding: 1em;
     text-align: center;
     font-size: 1.25em;
+    font-weight: 100;
     color: white;
-    font-family: 'Montserrat', sans-serif;
     position: absolute;
     bottom: 0;
     left: 50%;
