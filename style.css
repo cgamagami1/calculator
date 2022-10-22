@@ -1,7 +1,39 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: linear-gradient(90deg, #250325 0%, #000000 40% 60%, #250325 100%);
+}
+
+h1 {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: .1em;
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+}
+
+.calculator-body {
+    width: 21em;
+    height: 35em;
+    padding: 1em;
+    background-color: #0c0c0c;
+    border: 2px #505050 solid;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.screen {
+    height: 7em;
     background-color: black;
+    border-radius: .5em;
 }
 
 .buttons {
@@ -23,4 +55,21 @@ button {
 .addition-button {
     grid-column: 4/5;
     grid-row: 4/6;
+}
+
+footer {
+    padding: 1em;
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
 }
