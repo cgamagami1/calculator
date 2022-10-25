@@ -22,33 +22,23 @@ function updateScreen() {
     screen.textContent = firstOperand + operation + secondOperand; 
 }
 
-function inputEquation(e) {
-    if (!isNaN(e.target.id) || e.target.id === ".") {
-        if (operation === "") {
-            if (isResultOperand) {
-                firstOperand = "";
-            }
-
-            if (firstOperand.length < 4) {
-                if (e.target.id !== "." || (e.target.id === "." && !firstOperand.includes("."))) {
-                    firstOperand += e.target.id;
-                }
-            }
+function inputOperand(e) {
+    if (operation === "") {
+        if (isResultOperand) {
+            firstOperand = "";
         }
-        else {
-            if (secondOperand.length < 4) {
-                if (e.target.id !== "." || (e.target.id === "." && !secondOperand.includes("."))) {
-                    secondOperand += e.target.id;
-                }
+
+        if (firstOperand.length < 4) {
+            if (e.target.id !== "." || (e.target.id === "." && !firstOperand.includes("."))) {
+                firstOperand += e.target.id;
             }
         }
     }
     else {
-        if (!isNaN(firstOperand) && operation === "") {
-            operation = e.target.id;
-        }
-        else if (!isNaN(firstOperand) && operation !== "" && !isNaN(secondOperand)) {
-            solveEquation(e.target.id);
+        if (secondOperand.length < 4) {
+            if (e.target.id !== "." || (e.target.id === "." && !secondOperand.includes("."))) {
+                secondOperand += e.target.id;
+            }
         }
     }
 
@@ -56,8 +46,20 @@ function inputEquation(e) {
     updateScreen();
 }
 
+function inputOperation(e) {
+    if (operation === "") {
+        operation = e.target.id;
+    }
+    else {
+        solveEquation(e.target.id);
+    }
+
+    isResultOperand = false;
+    updateScreen();
+}
+
 function solveEquation(nextOperation) {
-    if (!isNaN(firstOperand) && operation !== "" && !isNaN(secondOperand)) {
+    if (operation !== "") {
         let result = 0;
 
         switch (operation) {
@@ -117,15 +119,15 @@ function clearAll() {
 }
 
 for (let numButton of numButtons) {
-    numButton.addEventListener("click", inputEquation);
+    numButton.addEventListener("click", inputOperand);
 }
 
 allClearButton.addEventListener("click", clearAll);
 clearButton.addEventListener("click", clear);
-moduloButton.addEventListener("click", inputEquation);
-divideButton.addEventListener("click", inputEquation);
-multiplyButton.addEventListener("click", inputEquation);
-subtractButton.addEventListener("click", inputEquation);
-addButton.addEventListener("click", inputEquation);
-pointButton.addEventListener("click", inputEquation);
+moduloButton.addEventListener("click", inputOperation);
+divideButton.addEventListener("click", inputOperation);
+multiplyButton.addEventListener("click", inputOperation);
+subtractButton.addEventListener("click", inputOperation);
+addButton.addEventListener("click", inputOperation);
+pointButton.addEventListener("click", inputOperand);
 equalsButton.addEventListener("click", solveEquation);
