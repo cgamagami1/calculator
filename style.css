@@ -2,13 +2,14 @@
     --light-grey: #747474;
     --grey: #3f3f3f;
     --dark-grey: #202020;
-    --purple: #410741;
+    --purple: #571157;
+    --dark-purple: #310727;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(90deg, var(--purple) 0%, black 40% 60%, var(--purple) 100%);
+    background-image: linear-gradient(90deg, var(--purple) 0%, var(--dark-purple) 40% 60%, var(--purple) 100%);
     font-family: 'Montserrat', sans-serif;
 }
 
