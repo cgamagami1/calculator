@@ -28,22 +28,26 @@ function inputOperand(e) {
             firstOperand = "";
         }
 
-        if (firstOperand.length < 4) {
-            if (e.target.id !== "." || (e.target.id === "." && !firstOperand.includes("."))) {
-                firstOperand += e.target.id;
-            }
-        }
+        firstOperand = appendToOperand(firstOperand, e.target.id);
     }
     else {
-        if (secondOperand.length < 4) {
-            if (e.target.id !== "." || (e.target.id === "." && !secondOperand.includes("."))) {
-                secondOperand += e.target.id;
-            }
-        }
+        secondOperand = appendToOperand(secondOperand, e.target.id);
     }
 
     isResultOperand = false;
     updateScreen();
+}
+
+function appendToOperand(operand, num) {
+    if (operand.length < 4) {
+        if (num === "." && operand.includes(".")) {
+            return;
+        }
+
+        operand += num;
+    }
+
+    return operand;
 }
 
 function inputOperation(e) {
@@ -60,25 +64,16 @@ function inputOperation(e) {
 
 function solveEquation(nextOperation) {
     if (operation !== "") {
-        let result = 0;
+        
+        const operationMap = {
+            "%": () => Number(firstOperand) % Number(secondOperand),
+            "/": () => Number(firstOperand) / Number(secondOperand),
+            "*": () => Number(firstOperand) * Number(secondOperand),
+            "-": () => Number(firstOperand) - Number(secondOperand),
+            "+": () => Number(firstOperand) + Number(secondOperand),
+        };
 
-        switch (operation) {
-            case "%":
-                result = Number(firstOperand) % Number(secondOperand);
-                break;
-            case "/":
-                result = Number(firstOperand) / Number(secondOperand);
-                break;
-            case "*":
-                result = Number(firstOperand) * Number(secondOperand);
-                break;
-            case "-":
-                result = Number(firstOperand) - Number(secondOperand);
-                break;
-            case "+":
-                result = Number(firstOperand) + Number(secondOperand);
-                break;
-        }
+        let result = operationMap[operation]();
 
         if (result === Infinity || isNaN(result)) {
             alert("Error");
